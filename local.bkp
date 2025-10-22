@@ -1,0 +1,304 @@
+{
+  "version": 4,
+  "terraform_version": "1.13.4",
+  "serial": 56,
+  "lineage": "971abfc0-d30b-d16f-3d77-5defbaaec096",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "digitalocean_droplet",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/digitalocean/digitalocean\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "backup_policy": [],
+            "backups": false,
+            "created_at": "2025-10-22T08:00:53Z",
+            "disk": 25,
+            "droplet_agent": null,
+            "graceful_shutdown": false,
+            "id": "525593793",
+            "image": "ubuntu-22-04-x64",
+            "ipv4_address": "138.197.108.174",
+            "ipv4_address_private": "10.108.16.3",
+            "ipv6": false,
+            "ipv6_address": "",
+            "locked": false,
+            "memory": 1024,
+            "monitoring": false,
+            "name": "piotr-najdychor-resources-terraform",
+            "price_hourly": 0.00893,
+            "price_monthly": 6,
+            "private_networking": true,
+            "region": "nyc3",
+            "resize_disk": true,
+            "size": "s-1vcpu-1gb",
+            "ssh_keys": [
+              "51544357"
+            ],
+            "status": "active",
+            "tags": null,
+            "timeouts": null,
+            "urn": "do:droplet:525593793",
+            "user_data": null,
+            "vcpus": 1,
+            "volume_ids": [],
+            "vpc_uuid": "11c6ecbb-4897-40b6-9521-8ad1264e9239"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjYwMDAwMDAwMDAwLCJ1cGRhdGUiOjM2MDAwMDAwMDAwMDB9LCJzY2hlbWFfdmVyc2lvbiI6IjEifQ==",
+          "dependencies": [
+            "digitalocean_ssh_key.public_key",
+            "digitalocean_vpc.vpc02",
+            "tls_private_key.name"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "digitalocean_firewall",
+      "name": "web02",
+      "provider": "provider[\"registry.terraform.io/digitalocean/digitalocean\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "created_at": "2025-10-22T07:48:44Z",
+            "droplet_ids": [
+              525593793
+            ],
+            "id": "5f468c40-dfa8-4611-931f-d10cc12affe9",
+            "inbound_rule": [
+              {
+                "port_range": "22",
+                "protocol": "tcp",
+                "source_addresses": [
+                  "157.230.116.2"
+                ],
+                "source_droplet_ids": [],
+                "source_kubernetes_ids": [],
+                "source_load_balancer_uids": [],
+                "source_tags": []
+              }
+            ],
+            "name": "only-02",
+            "outbound_rule": [
+              {
+                "destination_addresses": [
+                  "0.0.0.0/0",
+                  "::/0"
+                ],
+                "destination_droplet_ids": [],
+                "destination_kubernetes_ids": [],
+                "destination_load_balancer_uids": [],
+                "destination_tags": [],
+                "port_range": "53",
+                "protocol": "tcp"
+              }
+            ],
+            "pending_changes": [
+              {
+                "droplet_id": 525593793,
+                "removing": false,
+                "status": "waiting"
+              }
+            ],
+            "status": "waiting",
+            "tags": []
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "bnVsbA==",
+          "dependencies": [
+            "digitalocean_droplet.this",
+            "digitalocean_ssh_key.public_key",
+            "digitalocean_vpc.vpc02",
+            "tls_private_key.name"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "digitalocean_project",
+      "name": "projekt02",
+      "provider": "provider[\"registry.terraform.io/digitalocean/digitalocean\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "created_at": "2025-10-21T12:20:03Z",
+            "description": "A project to represent development resources.",
+            "environment": "Development",
+            "id": "38c53ab2-70d9-4e76-bcfd-091ac38a068a",
+            "is_default": false,
+            "name": "zadanie02",
+            "owner_id": 14150917,
+            "owner_uuid": "8a701089-2cac-4d61-ba6d-b0f7053c6f70",
+            "purpose": "Web Application",
+            "resources": [
+              "do:droplet:525593793"
+            ],
+            "timeouts": null,
+            "updated_at": "2025-10-21T12:20:03Z"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxODAwMDAwMDAwMDB9fQ==",
+          "dependencies": [
+            "digitalocean_droplet.this",
+            "digitalocean_ssh_key.public_key",
+            "digitalocean_vpc.vpc02",
+            "tls_private_key.name"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "digitalocean_ssh_key",
+      "name": "public_key",
+      "provider": "provider[\"registry.terraform.io/digitalocean/digitalocean\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "fingerprint": "68:0e:ef:8b:02:13:c8:6b:2a:1b:4f:fa:4f:24:9c:b2",
+            "id": "51544357",
+            "name": "example_key_pk",
+            "public_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBsWmTw7JW1uLvpGDTIEkhFFzUZFhQGC6g75tp4c39UC\n",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDB9fQ==",
+          "dependencies": [
+            "tls_private_key.name"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "digitalocean_vpc",
+      "name": "vpc02",
+      "provider": "provider[\"registry.terraform.io/digitalocean/digitalocean\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "created_at": "2025-10-22 07:48:09 +0000 UTC",
+            "default": false,
+            "description": "",
+            "id": "11c6ecbb-4897-40b6-9521-8ad1264e9239",
+            "ip_range": "10.108.16.0/20",
+            "name": "zadanie02vpc",
+            "region": "nyc3",
+            "timeouts": null,
+            "urn": "do:vpc:11c6ecbb-4897-40b6-9521-8ad1264e9239"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiZGVsZXRlIjoxMjAwMDAwMDAwMDB9fQ=="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "local_file",
+      "name": "this",
+      "provider": "provider[\"registry.terraform.io/hashicorp/local\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "content": "-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtz\nc2gtZWQyNTUxOQAAACAbFpk8OyVtbi76Rg0yBJIRRc1GRYUBguoO+baeHN/VAgAA\nAIjnl3Eg55dxIAAAAAtzc2gtZWQyNTUxOQAAACAbFpk8OyVtbi76Rg0yBJIRRc1G\nRYUBguoO+baeHN/VAgAAAEAIA+EEd3sVSttjWIsO/DzCcU/9Sb/u9dR31RBZTTBG\n1BsWmTw7JW1uLvpGDTIEkhFFzUZFhQGC6g75tp4c39UCAAAAAAECAwQF\n-----END OPENSSH PRIVATE KEY-----\n",
+            "content_base64": null,
+            "content_base64sha256": "KCIOd/2CkcKHpRlDFpGsGWn7tdGFOo+F4q3sOzHFojk=",
+            "content_base64sha512": "1sFE97W88NwDysU1kBdH29WnqU4UdIY4kxrnqnut0w/PZgSjje7Wfbqx2JWN6EaffAFXlQOhNKhmp9yqwN/9MA==",
+            "content_md5": "bcd1fef4de79c4ea4780922c39a0fd8e",
+            "content_sha1": "8c6b1216e387eaaf790a3cfd04c3167a86d034c0",
+            "content_sha256": "28220e77fd8291c287a519431691ac1969fbb5d1853a8f85e2adec3b31c5a239",
+            "content_sha512": "d6c144f7b5bcf0dc03cac535901747dbd5a7a94e14748638931ae7aa7badd30fcf6604a38deed67dbab1d8958de8469f7c01579503a134a866a7dcaac0dffd30",
+            "directory_permission": "0777",
+            "file_permission": "0600",
+            "filename": "./id_ed25519",
+            "id": "8c6b1216e387eaaf790a3cfd04c3167a86d034c0",
+            "sensitive_content": null,
+            "source": null
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "content"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "sensitive_content"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "dependencies": [
+            "tls_private_key.name"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "tls_private_key",
+      "name": "name",
+      "provider": "provider[\"registry.terraform.io/hashicorp/tls\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "algorithm": "ED25519",
+            "ecdsa_curve": "P224",
+            "id": "ca1baf47c1717d1328391cd030e48498bf4c0454",
+            "private_key_openssh": "-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtz\nc2gtZWQyNTUxOQAAACAbFpk8OyVtbi76Rg0yBJIRRc1GRYUBguoO+baeHN/VAgAA\nAIjnl3Eg55dxIAAAAAtzc2gtZWQyNTUxOQAAACAbFpk8OyVtbi76Rg0yBJIRRc1G\nRYUBguoO+baeHN/VAgAAAEAIA+EEd3sVSttjWIsO/DzCcU/9Sb/u9dR31RBZTTBG\n1BsWmTw7JW1uLvpGDTIEkhFFzUZFhQGC6g75tp4c39UCAAAAAAECAwQF\n-----END OPENSSH PRIVATE KEY-----\n",
+            "private_key_pem": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIAgD4QR3exVK22NYiw78PMJxT/1Jv+711HfVEFlNMEbU\n-----END PRIVATE KEY-----\n",
+            "private_key_pem_pkcs8": "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIAgD4QR3exVK22NYiw78PMJxT/1Jv+711HfVEFlNMEbU\n-----END PRIVATE KEY-----\n",
+            "public_key_fingerprint_md5": "68:0e:ef:8b:02:13:c8:6b:2a:1b:4f:fa:4f:24:9c:b2",
+            "public_key_fingerprint_sha256": "SHA256:o1TWb1FezXmwgMJo1FW7LwPhQRtKAe5S1S156nCRc8M",
+            "public_key_openssh": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBsWmTw7JW1uLvpGDTIEkhFFzUZFhQGC6g75tp4c39UC\n",
+            "public_key_pem": "-----BEGIN PUBLIC KEY-----\nMCowBQYDK2VwAyEAGxaZPDslbW4u+kYNMgSSEUXNRkWFAYLqDvm2nhzf1QI=\n-----END PUBLIC KEY-----\n",
+            "rsa_bits": 2048
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "private_key_openssh"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "private_key_pem"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "private_key_pem_pkcs8"
+              }
+            ]
+          ],
+          "identity_schema_version": 0
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
+

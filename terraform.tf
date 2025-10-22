@@ -11,4 +11,16 @@
       version = "4.1.0"
     }
    }
+   cloud {
+    organization = "terraform_pnajdychor"
+    hostname = "app.terraform.io" # Optional; defaults to app.terraform.io
+
+    workspaces {
+      project = "prj-MsVBdNxDyXfHfXw2"
+      name = "terraform"
+
+    
+    }
+  }
+
  }
