@@ -11,7 +11,7 @@
       version = "4.1.0"
     }
    }
-  /* cloud {
+   cloud {
     organization = "terraform_pnajdychor"
     hostname = "app.terraform.io" # Optional; defaults to app.terraform.io
 
@@ -21,6 +21,6 @@
 
     
     }
-  }*/
+  }
 
  }
