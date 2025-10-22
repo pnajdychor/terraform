@@ -1,7 +1,21 @@
-resource "digitalocean_droplet" "name" {
+resource "digitalocean_project" "this" {
+  name        = var.name
+  description = "A project to represent development resources."
+  purpose     = "Web Application"
+  environment = "Development"
+  resources   = [digitalocean_droplet.this.urn]
+}
+
+resource "digitalocean_vpc" "vpc02" {
+  name   = var.name
+  region = var.region
+  ip_range = var.subnet
+}
+
+resource "digitalocean_droplet" "this" {
   image  = "ubuntu-22-04-x64"
-  name   = "example"
-  region = "nyc3"
+  name   = var.name
+  region = var.region
   size   = "s-1vcpu-1gb"
   backups = false
   ssh_keys = [digitalocean_ssh_key.public_key.id]
@@ -10,43 +24,40 @@ resource "digitalocean_droplet" "name" {
 }
 
 resource "digitalocean_ssh_key" "public_key"{
-    name = "example_key_pk"
-    public_key = tls_private_key.name.public_key_openssh
+    name = var.name
+    public_key = tls_private_key.this.public_key_openssh
 }
 
-resource "tls_private_key" "name" {
+resource "tls_private_key" "this" {
     algorithm = "ED25519"
   
 }
 
-resource "digitalocean_project" "projekt02" {
-  name        = "zadanie02"
-  description = "A project to represent development resources."
-  purpose     = "Web Application"
-  environment = "Development"
-  resources   = [digitalocean_droplet.name.urn]
-}
-
-resource "digitalocean_vpc" "vpc02" {
-  name   = "zadanie02vpc"
-  region = "nyc3"
-}
-
 resource "digitalocean_firewall" "web02" {
-  name = "only-02"
+  name = var.name
 
-  droplet_ids = [digitalocean_droplet.name.id]
+  droplet_ids = [digitalocean_droplet.this.id]
 
   inbound_rule {
     protocol         = "tcp"
     port_range       = "22"
-    source_addresses = ["157.230.116.2"]
+    source_addresses = ["157.230.116.2/32"]
   }
 
     outbound_rule {
     protocol              = "tcp"
-    port_range            = "53"
-    destination_addresses = ["0.0.0.0/0", "::/0"]
+    port_range            = "1-65535"
+    destination_addresses = ["0.0.0.0/0"]
   }
+  outbound_rule {
+    protocol              = "udp"
+    port_range            = "1-65535"
+    destination_addresses = ["0.0.0.0/0"]
+  }
+}
 
+resource "local_file" "this" {
+  filename = "${path.root}/id_ed25519"
+  file_permission = "0600"
+  content = tls_private_key.this.private_key_openssh
 }
