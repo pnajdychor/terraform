@@ -1,6 +1,6 @@
 resource "digitalocean_project" "this" {
   name        = var.name
-  description = "A project to represent development resources."
+  description = "A project to represent development resources. "
   purpose     = "Web Application"
   environment = "Development"
   resources   = [digitalocean_droplet.this.urn]
